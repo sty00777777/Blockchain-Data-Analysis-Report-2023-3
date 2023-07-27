@@ -1,0 +1,128 @@
+数据可视化代码：
+1.
+select
+  create_date,
+  Number_of_Receiving_Addresses,
+  Number_of_Sending_Addresses,
+  Number_of_Active_Addresses,
+  Number_of_New_Addresses
+from
+  official_dashboard_data.eth_addresses
+
+2.
+select
+  create_date,
+  Number_of_Addresses_with_a_Non_Zero_Balance,
+  Number_of_Addresses_with_a_100_Balance,
+  Number_of_Addresses_with_a_10000_Balance
+from
+  official_dashboard_data.eth_addresses
+
+3.
+select
+  day,
+  count(*) as blocks_created,
+  avg(difficulty) as avg_difficulty,
+  avg(total_difficulty) as total_difficulty,
+  avg(size) as avg_size,
+  avg(gas_used) as avg_gas_used,
+  sum(gas_used) as sum_gas_used,
+  avg(transaction_count) as avg_transaction_count,
+  sum(transaction_count) as sum_transaction_count
+from
+  nifi_ethereum.blocks
+group by
+  day
+
+4.
+select
+  date,
+  Crypto_kitties,
+  Crypto_punks,
+  Axie_infinity,
+  Open_sea
+from
+  official_dashboard_data.dapp_transaction_number
+
+5.
+select
+  day,
+  count(*) as erc_number
+from
+  nifi_ethereum.contracts
+group by
+  day
+
+6.
+select
+  day,
+  count(*) as erc20_number
+from
+  nifi_ethereum.contracts
+where
+  is_erc20 = 'True'
+group by
+  day
+
+7.
+select
+  day,
+  count(*) as erc20_number
+from
+  nifi_ethereum.contracts
+where
+  is_erc20 = 'True'
+group by
+  day
+
+8.
+select
+  category,
+  count(*)
+from
+  dapp_supply.dapp_supply_frontend
+group by
+  category
+
+9.
+select
+  date,
+  close,
+  volume,
+  marketcap,
+  symbol
+from
+  token.token_hloc
+where
+  symbol = 'ETH'
+
+10.
+select
+  *
+from
+  official_dashboard_data.eth_money_markets
+
+数据获取代码
+1.
+select
+  *
+FROM
+  official_dashboard_data.dapp_transaction_number
+
+2.
+select
+  *
+FROM
+  official_dashboard_data.dapp_sum_value
+
+3.
+select
+  *
+FROM
+  official_dashboard_data.dapp_sum_gas
+
+4.
+select
+  *
+from
+  official_dashboard_data.dapp_active_number
